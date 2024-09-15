@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Edit_Info_Raw:React.FC = () => {
 
@@ -45,7 +45,7 @@ const Edit_Info_Raw:React.FC = () => {
             </div>
             <div onClick={()=>{
                 if(rollNo.trim().length>0 && CompanyName.trim().length>0)
-                window.location.href=`/EditInfo/${rollNo}/${CompanyName}`;
+                window.location.href=`/EditInfo/${CompanyName}/${rollNo}`;
             }}  className='transition-all active:scale-105 border-black/30 
           border-[1px] select-none px-5 py-1 mt-6 rounded-xl text-md hover:cursor-pointer
            active:shadow-lg bg-teal-700 text-white' >

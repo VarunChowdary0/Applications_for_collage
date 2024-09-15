@@ -28,7 +28,7 @@ const Row:React.FC<currentProps> = (props) => {
 
         <div className=' child absolute right-2 h-full  flex items-center max-sm:right-[-4px] justify-center w-10'>
             <div onClick={()=>{
-                window.location.href=`/EditInfo/${props.rollNo}/${props.companyName}`;
+                window.location.href=`/EditInfo/${props.companyName}/${props.rollNo}`;
             }}  className=' hover: scale-110 active:scale-90  max-sm:scale-[0.7] 
             hover:cursor-pointer transition-all  p-2 rounded-full bg-[#ffa962]'>
                 <EditIcon height={20} width={20}/>

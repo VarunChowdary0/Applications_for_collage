@@ -31,7 +31,7 @@ const router = createBrowserRouter([
       <UpdatePacements/>
     </>
   },{
-    path:"/EditInfo/:rollNum/:company",
+    path:"/EditInfo/:company/:rollNum",
     element:
     <>
       <Menu currentPage='EDT_IFO' />

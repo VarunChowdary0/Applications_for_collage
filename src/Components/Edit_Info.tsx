@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EditIcon from "./Icons/EditIcon";
+import axios from "axios";
+import url from "./URL/Constants";
 
 const Edit_Info: React.FC = () => {
   const { rollNum } = useParams();
@@ -9,6 +11,7 @@ const Edit_Info: React.FC = () => {
   const [name,setName] = useState<string>("V D P GANESH");
   const [Company,setCompany] = useState<string>(company||"");
   const [packageAmount,setPackage] = useState<number>(9);
+
 
   const getBranch = (rollNum:string) => {
     const subStr = (rollNum.substring(6,8));
@@ -35,6 +38,19 @@ const Edit_Info: React.FC = () => {
     if(rollNum){
       setBranch(getBranch(rollNum));
     }
+  },[])
+
+  useEffect(()=>{
+      axios.post(url + "/get-details", {
+        companyName:company,
+        rollNo:rollNum
+      })
+      .then((res) => {
+          console.log(res.data);    
+      })
+      .catch((err) => {
+          console.log(err);
+      });
   },[])
   return (
     <div
