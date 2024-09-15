@@ -1,25 +1,60 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Menu from './Components/Menu';
+import Placement_Info from './Components/Placement_Info';
+import UpdatePacements from './Components/UpdatePacements';
+import Edit_Info from './Components/Edit_Info';
+import Edit_Info_Raw from './Components/Edit_Info_Raw';
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element:<><Menu currentPage='home'/></>
+  },
+  {
+    path:"/placements",
+    element:
+      <>
+        <Menu currentPage='PAT_I' />
+        <Placement_Info/>
+      </>
+  },
+  {
+    path:"/updatePlacements",
+    element:
+    <>
+      <Menu currentPage='UPD_PMTS'/>
+      <UpdatePacements/>
+    </>
+  },{
+    path:"/EditInfo/:rollNum/:company",
+    element:
+    <>
+      <Menu currentPage='EDT_IFO' />
+      <Edit_Info/>
+    </>
+  }
+  ,{
+    path:"/EditInfo",
+    element:
+    <>
+      <Menu currentPage='EDT_IFO' />
+      <Edit_Info_Raw/>
+    </>
+  }
+]);
+
+const App:React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+          <div className=' w-full h-screen bg-[#ffffff] '>
+            <RouterProvider router={router} />
+          </div>
+      </>
   );
 }
 
