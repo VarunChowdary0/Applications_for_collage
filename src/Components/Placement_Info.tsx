@@ -13,31 +13,31 @@ interface PlacementData {
 
 const Placement_Info:React.FC = () => {
     const [data, setData] = useState<PlacementData[]>([
-            { rollNo: "20951A6609", name: "V D P GANESH", companyName: "TCS", package: 9.0 },
-            { rollNo: "20951A0463", name: "SURROLA HEMANTH", companyName: "TCS", package: 9.0 },
-            { rollNo: "20951A0555", name: "G HRUTHI VADAN", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A0585", name: "M MANOJ", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A05G4", name: "PASUPULA SATWIK", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A05K8", name: "LANKA SRI VISHAL", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A6616", name: "P L SAI CHARAN", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A6634", name: "BHALKE PREMNATH", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A6702", name: "BODAKUNTA AJAY", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A6723", name: "M MEENAKSHI", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A6718", name: "CHEEKATI KARTHIK", companyName: "TCS", package: 7.0 },
-            { rollNo: "21955A1208", name: "PABBU ROHITH", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A1288", name: "SANTOSH ARYAL", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A1293", name: "S MD SHARFUDDIN", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A1222", name: "P GANGA REDDY", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A3303", name: "M AISHWARYA", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A04H3", name: "GURRAM SHARANYA", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A0439", name: "A DEEPAK KUMAR", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A04F5", name: "M SAI NIKETH", companyName: "TCS", package: 7.0 },
-            { rollNo: "21955A0417", name: "A S SHASHIDHAR", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A04F2", name: "A SAI KOUSHIK", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A0475", name: "KUSUMA SAITEJA", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A1260", name: "S J PRANEETH", companyName: "TCS", package: 7.0 },
-            { rollNo: "20951A0589", name: "S M DHARMA TEJA", companyName: "TCS", package: 3.36 },
-            { rollNo: "20951A6648", name: "G SRIKAR", companyName: "TCS", package: 3.36 }
+            // { rollNo: "20951A6609", name: "V D P GANESH", companyName: "TCS", package: 9.0 },
+            // { rollNo: "20951A0463", name: "SURROLA HEMANTH", companyName: "TCS", package: 9.0 },
+            // { rollNo: "20951A0555", name: "G HRUTHI VADAN", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A0585", name: "M MANOJ", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A05G4", name: "PASUPULA SATWIK", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A05K8", name: "LANKA SRI VISHAL", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A6616", name: "P L SAI CHARAN", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A6634", name: "BHALKE PREMNATH", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A6702", name: "BODAKUNTA AJAY", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A6723", name: "M MEENAKSHI", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A6718", name: "CHEEKATI KARTHIK", companyName: "TCS", package: 7.0 },
+            // { rollNo: "21955A1208", name: "PABBU ROHITH", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A1288", name: "SANTOSH ARYAL", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A1293", name: "S MD SHARFUDDIN", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A1222", name: "P GANGA REDDY", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A3303", name: "M AISHWARYA", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A04H3", name: "GURRAM SHARANYA", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A0439", name: "A DEEPAK KUMAR", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A04F5", name: "M SAI NIKETH", companyName: "TCS", package: 7.0 },
+            // { rollNo: "21955A0417", name: "A S SHASHIDHAR", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A04F2", name: "A SAI KOUSHIK", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A0475", name: "KUSUMA SAITEJA", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A1260", name: "S J PRANEETH", companyName: "TCS", package: 7.0 },
+            // { rollNo: "20951A0589", name: "S M DHARMA TEJA", companyName: "TCS", package: 3.36 },
+            // { rollNo: "20951A6648", name: "G SRIKAR", companyName: "TCS", package: 3.36 }
         ]);
 
     const [companyName,setCompanyName] = useState<string>("");
@@ -48,19 +48,23 @@ const Placement_Info:React.FC = () => {
     const [isSubimmted,setSubmmit] = useState<boolean>(false);
 
 
-    useEffect(()=>{
-        if(isSubimmted){
-            axios.post(url+"/get-placement-info",{
-                companyName,Batch
-            })
-            .then((res)=>{
-                console.log(res.data);
-            })
-            .catch((err)=>{
-                console.log(err);
-            })
-        }
-    },[])
+    const callFetch = () => {
+        axios.post(url + "/get-placement-info", {
+            companyName,
+            Batch
+        })
+        .then((res) => {
+            const placements: PlacementData[] = res.data.data;
+            console.log(placements);    
+            setData(placements);
+
+        })
+        .catch((err) => {
+            console.log(err);
+            setSubmmit(false);
+        });
+    };
+    
 
     useEffect(()=>{
         setSubmmit(false);
@@ -104,6 +108,7 @@ const Placement_Info:React.FC = () => {
             </div>
             { (!isSubimmted && companyName.trim().length>0 ) && 
             <div onClick={()=>{
+                callFetch();
                 setSubmmit(true);
             }} className=' select-none px-5 py-2 hover:cursor-pointer bg-[#4c5cb6] 
             text-white rounded-xl active:bg-[#81ae2f] absolute bottom-5 right-8 active:shadow-lg
