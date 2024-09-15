@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Table from './Table';
+import axios from 'axios';
+import url from './URL/Constants';
+
 
 interface PlacementData {
     rollNo: string;
@@ -43,6 +46,21 @@ const Placement_Info:React.FC = () => {
 
     const [isFetched,setFetchStat] = useState<boolean>(false);
     const [isSubimmted,setSubmmit] = useState<boolean>(false);
+
+
+    useEffect(()=>{
+        if(isSubimmted){
+            axios.post(url+"/get-placement-info",{
+                companyName,Batch
+            })
+            .then((res)=>{
+                console.log(res.data);
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+        }
+    },[])
 
     useEffect(()=>{
         setSubmmit(false);

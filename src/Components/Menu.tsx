@@ -14,13 +14,13 @@ const Menu:React.FC<currentProps> = (prps) => {
         <div onClick={()=>{
           Activate(true);
         }} className=' bg-[#212645] px-4 py-2 text-white w-fit absolute top-3 left-5 
-        rounded-xl hover:cursor-pointer'>Menu</div>
+        rounded-xl hover:cursor-pointer max-sm:left-1 max-sm:scale-75'>Menu</div>
        }
 
-       <div className={` absolute top-0 bottom-0 left-0 right-0 flex duration-300 transition-all z-50
+       <div className={` fixed top-0  h-screen left-0 right-0  flex duration-300 transition-all z-50
          ${isActive?"translate-x-0":" translate-x-[-200vw]"}`}> 
-        <div className={`  bg-[#202020] shadow-2xl   pt-24 text-xl  
-          gap-10 flex flex-col  h-full text-white  w-[20vw]
+        <div className={`  bg-[#202020] shadow-2xl   pt-24 text-xl min-w-[190px] text-center  
+          gap-10 flex flex-col  h-full text-white  w-[20vw] max-sm:text-sm
           `}>
               <div className={` px-10 py-5 flex items-center justify-center 
               transition-all duration-300 ${prps.currentPage==="home"?" text-white":" text-[#8b8989]"} hover:cursor-pointer rounded-3xl`}>
