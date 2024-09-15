@@ -40,7 +40,7 @@ const Placement_Info:React.FC = () => {
             // { rollNo: "20951A6648", name: "G SRIKAR", companyName: "TCS", package: 3.36 }
         ]);
 
-    const [companyName,setCompanyName] = useState<string>("");
+    const [companyName,setCompanyName] = useState<string>(localStorage.getItem("companyName")||"");
 
     const [Batch,setBatch] = useState<string>("2024");
 
@@ -64,8 +64,13 @@ const Placement_Info:React.FC = () => {
             setSubmmit(false);
         });
     };
-    
 
+    
+    useEffect(()=>{
+        if(companyName.length !== 0){
+            callFetch();
+        } 
+    })
     useEffect(()=>{
         setSubmmit(false);
     },[companyName]);
@@ -81,6 +86,7 @@ const Placement_Info:React.FC = () => {
                 <input id="url" type="text" value={companyName}
                 onChange={(e)=>{
                     setCompanyName(e.target.value);
+                    localStorage.setItem("companyName",e.target.value);
                 }}
                  className="block w-full rounded-md py-1.5
                                 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 border-black/10
