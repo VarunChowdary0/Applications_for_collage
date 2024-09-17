@@ -24,16 +24,24 @@ const Row:React.FC<currentProps> = (props) => {
         </td>
         <td>{props.name}</td>
         <td>{props.companyName}</td>
-        <td className=' px-10'>{props.package} .LPA</td>
-
-        <div className=' child absolute right-2 h-full  flex items-center max-sm:right-[-4px] justify-center w-10'>
-            <div onClick={()=>{
-                window.location.href=`/EditInfo/${props.companyName}/${props.rollNo}`;
-            }}  className=' hover: scale-110 active:scale-90  max-sm:scale-[0.7] 
-            hover:cursor-pointer transition-all  p-2 rounded-full bg-[#ffa962]'>
-                <EditIcon height={20} width={20}/>
+        <td className=' bg-black/10 mr-16 relative flex items-center mt-2 gap-5 justify-center'>
+            <p className=' w-fit'>{props.package} .LPA</p>
+            <div className=' child gap-3 scale-75 absolute right-[-20px] h-full  flex items-center max-sm:right-[-4px] justify-center w-10'>
+                <div onClick={()=>{
+                    window.location.href=`/EditInfo/${props.companyName}/${props.rollNo}`;
+                }}  className=' hover: scale-110 active:scale-90  max-sm:scale-[0.7] 
+                hover:cursor-pointer transition-all  p-2 rounded-full bg-[#ffa962]'>
+                    <EditIcon height={20} width={20}/>
+                </div>
+                <div onClick={()=>{
+                    window.location.href=`/EditInfo/${props.companyName}/${props.rollNo}`;
+                }}  className=' hover: scale-110 active:scale-90  max-sm:scale-[0.7] 
+                hover:cursor-pointer transition-all  p-2 rounded-full bg-[#ffa962]'>
+                    <EditIcon height={20} width={20}/>
+                </div>
             </div>
-        </div>
+        </td>
+       
     </tr>
   )
 }

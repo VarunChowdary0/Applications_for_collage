@@ -111,17 +111,21 @@ const Placement_Info:React.FC = () => {
                                 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
                                 px-3  focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 
-                {C_suggestions.length > 0 && <div className=' w-full top-16 mt-1 h-fit
-                 absolute  bg-[#ffffff] rounded-md shadow-md border-2 border-[#efede9]'>
+                { ((C_suggestions.length > 0)) && <div className=' w-full top-16 mt-1 h-fit
+                 absolute  bg-[#ffffff] rounded-md shadow-md  border-[#efede9]'>
                     {
                         C_suggestions.map((ele,idx)=>
+                        ( ele.CompanyName!==companyName &&
                             <div onClick={()=>{
                                 setCompanyName(ele.CompanyName);
                             }}>
                                 <div className=' flex items-center justify-start transition-all hover:bg-[#eeede9] px-6 py-2'>{ele.CompanyName}</div>
+                                {companyName.length-1 === idx &&
                                 <hr className=' border-[#d4cbcb]'/>
+                            }
                             </div>
-                        )
+                        )    
+                    )
                     }
                  </div>}
             </div>
