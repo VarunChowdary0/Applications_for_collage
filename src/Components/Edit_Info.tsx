@@ -30,10 +30,13 @@ const Edit_Info: React.FC = () => {
         return "Computer Science and Engineering DataScience";
       case "66":
         return "Computer Science and Engineering Artificial Intelligence";
+      case "62":
+        return "Computer Science and Engineering Cyber Security";
       default:
         return "";
     }
   };
+
 
   useEffect(() => {
     if (rollNum) {

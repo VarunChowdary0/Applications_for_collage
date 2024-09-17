@@ -1,6 +1,6 @@
 import axios from 'axios';
 import url from './URL/Constants';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const UpdatePacements: React.FC = () => {
 
@@ -9,7 +9,10 @@ const UpdatePacements: React.FC = () => {
   const [CompanyName,setCompanyName] = useState<string>("");
   const [Package,setPackage] = useState<number>();
   const [Batch, setBatch] = useState<string>("2024");
-  const [flasher,SetFlasher] = useState<string>("hdasbc");
+  const [flasher,SetFlasher] = useState<string>("");
+
+  const [C_suggestions,setCSuggestion] = useState<{CompanyName:string}[]>([]);
+
 
   const [showSubmit,setShow] = useState<boolean>(true);
 
@@ -61,12 +64,39 @@ const UpdatePacements: React.FC = () => {
     }
   }
 
+  
+  useEffect(()=>{
+
+    axios.post(url+"/get-companyNames",{
+        Cname:CompanyName
+    })
+        .then((res)=>{
+            console.log(res.data.data);
+            setCSuggestion(res.data.data);
+        })
+        .catch((Err)=>{
+            console.log(Err);
+        })
+},[CompanyName]);
+
   return (
     <div className='h-full min-h-screen bg-slate-500/0 flex items-center 
     justify-start flex-col w-full pt-16 px-10'>
       <div className='h-fit w-fit pt-10 px-14 flex items-center border-[#988f8f] 
           gap-5 border-[1px] rounded-xl p-4 max-sm:h-fit relative
           max-sm:mt-8 max-sm:gap-5 flex-col max-sm:items-center'>
+        <div className=' flex items-center h-[160px] w-full justify-center '>
+            <div className='w-[130px] h-full bg-black/50 overflow-hidden rounded-md'>
+            {rollNo.length===10?  
+            <img className=' w-full h-full' 
+                  src={`https://iare-data.s3.ap-south-1.amazonaws.com/uploads/STUDENTS/${rollNo}/${rollNo}.jpg`}
+             alt="" />:
+              <div className=' text-white font-thin h-full w-full flex items-center justify-center'>
+                  Photo
+              </div>
+            }
+            </div>
+        </div>
         <div className='flex flex-wrap justify-between gap-10 max-sm:gap-7'>
           {/* Student Roll Number */}
           <div className='flex w-[250px] flex-col gap-1'>
@@ -105,21 +135,38 @@ const UpdatePacements: React.FC = () => {
 
         <div className='flex flex-wrap justify-between gap-10 max-sm:gap-7 mt-5'>
           {/* Company Name */}
-          <div className='flex w-[250px] flex-col gap-1'>
-            <p className='block text-sm font-medium leading-6 text-gray-900'>
-              Company Name
-            </p>
-            <input required id="company" type="text" 
-            value={CompanyName}
-              onChange={(e) => {
-                setCompanyName(e.target.value);
-              }}
-              className="block w-full rounded-md py-1.5
-                            text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 border-black/10
-                            border-[1px] tracking-widest
-                            placeholder:text-gray-400 focus:ring-2 focus:ring-inset
-                            px-3  focus:ring-indigo-600 sm:text-sm sm:leading-6" />
-          </div>
+          <div className=' flex relative w-[250px] flex-col gap-1 '>
+                <p className='block text-sm font-medium
+                        leading-6 text-gray-900'> Company name</p>
+                <input autoComplete='off' id="url" type="text" value={CompanyName}
+                onChange={(e)=>{
+                    setCompanyName(e.target.value);
+                    localStorage.setItem("companyName",e.target.value);
+                }}
+                 className="block w-full rounded-md py-1.5
+                                text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 border-black/10
+                                border-[1px] tracking-widest
+                                placeholder:text-gray-400 focus:ring-2 focus:ring-inset
+                                px-3  focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                
+                { ((C_suggestions.length > 0)) && <div className=' w-full top-16 mt-1 h-fit
+                 absolute  bg-[#ffffff] rounded-md shadow-md  border-[#efede9] opacity-75 hover:opacity-100'>
+                    {
+                        C_suggestions.map((ele,idx)=>
+                        ( ele.CompanyName!==CompanyName &&
+                            <div onClick={()=>{
+                                setCompanyName(ele.CompanyName);
+                            }}>
+                                <div className=' flex items-center justify-start transition-all hover:bg-[#eeede9] px-6 py-2'>{ele.CompanyName}</div>
+                                {CompanyName.length-1 === idx &&
+                                <hr className=' border-[#d4cbcb]'/>
+                            }
+                            </div>
+                        )    
+                    )
+                    }
+                 </div>}
+            </div>
 
           {/* Package */}
           <div className='flex w-[250px] flex-col gap-1'>

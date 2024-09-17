@@ -90,7 +90,7 @@ const Placement_Info:React.FC = () => {
 
 
         setSubmmit(false);
-    },[companyName]);
+    },[companyName,Batch]);
 
   return (
     <div className=' bg-black/0  w-full h-full z-40 flex flex-col gap-7 pt-16 items-center pb-24' >
