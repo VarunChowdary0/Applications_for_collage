@@ -20,8 +20,12 @@ const Edit_Info: React.FC = () => {
         return "Computer Science and Engineering";
       case "04":
         return "Electronics and Communication Engineering";
+      case "03":
+        return "Mechanical Engineering";
       case "12":
         return "Information Technology";
+      case "21":
+        return "Aeronautical Engineering";
       case "67":
         return "Computer Science and Engineering DataScience";
       case "66":

@@ -48,6 +48,10 @@ const Placement_Info:React.FC = () => {
     const [isSubimmted,setSubmmit] = useState<boolean>(false);
 
 
+    const [C_suggestions,setCSuggestion] = useState<{CompanyName:string}[]>([]);
+
+
+
     const callFetch = () => {
         axios.post(url + "/get-placement-info", {
             companyName,
@@ -70,8 +74,21 @@ const Placement_Info:React.FC = () => {
         if(companyName.length !== 0){
             callFetch();
         } 
-    })
+    },[,companyName])
     useEffect(()=>{
+
+        axios.post(url+"/get-companyNames",{
+            Cname:companyName
+        })
+            .then((res)=>{
+                console.log(res.data.data);
+                setCSuggestion(res.data.data);
+            })
+            .catch((Err)=>{
+                console.log(Err);
+            })
+
+
         setSubmmit(false);
     },[companyName]);
 
@@ -80,10 +97,10 @@ const Placement_Info:React.FC = () => {
         <div className=' h-[100px] w-[60vw] flex items-center   border-[#988f8f] 
         gap-10 border-[1px] rounded-xl p-4 max-sm:h-fit max-sm:w-[70vw] relative
         max-sm:mt-8 max-sm:gap-5 max-sm:flex-col'>
-            <div className=' flex w-[250px] flex-col gap-1 '>
+            <div className=' flex relative w-[250px] flex-col gap-1 '>
                 <p className='block text-sm font-medium
                         leading-6 text-gray-900'> Company name</p>
-                <input id="url" type="text" value={companyName}
+                <input autoComplete='off' id="url" type="text" value={companyName}
                 onChange={(e)=>{
                     setCompanyName(e.target.value);
                     localStorage.setItem("companyName",e.target.value);
@@ -93,6 +110,20 @@ const Placement_Info:React.FC = () => {
                                 border-[1px] tracking-widest
                                 placeholder:text-gray-400 focus:ring-2 focus:ring-inset
                                 px-3  focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                
+                {C_suggestions.length > 0 && <div className=' w-full top-16 mt-1 h-fit
+                 absolute  bg-[#ffffff] rounded-md shadow-md border-2 border-[#efede9]'>
+                    {
+                        C_suggestions.map((ele,idx)=>
+                            <div onClick={()=>{
+                                setCompanyName(ele.CompanyName);
+                            }}>
+                                <div className=' flex items-center justify-start transition-all hover:bg-[#eeede9] px-6 py-2'>{ele.CompanyName}</div>
+                                <hr className=' border-[#d4cbcb]'/>
+                            </div>
+                        )
+                    }
+                 </div>}
             </div>
             <div className='  flex w-[250px] flex-col gap-1 '>
                 <p className='block text-sm font-medium

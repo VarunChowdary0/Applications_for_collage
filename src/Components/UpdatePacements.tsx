@@ -1,3 +1,5 @@
+import axios from 'axios';
+import url from './URL/Constants';
 import React, { useState } from 'react'
 
 const UpdatePacements: React.FC = () => {
@@ -7,9 +9,14 @@ const UpdatePacements: React.FC = () => {
   const [CompanyName,setCompanyName] = useState<string>("");
   const [Package,setPackage] = useState<number>();
   const [Batch, setBatch] = useState<string>("2024");
+  const [flasher,SetFlasher] = useState<string>("hdasbc");
+
+  const [showSubmit,setShow] = useState<boolean>(true);
 
   const handleSave = () => {
     if( rollNo.trim()!=="" && StudentName.trim()!=="" && CompanyName.trim()!=="" && (Package) ){
+
+      setShow(false);
 
       const Data = {
         rollNumber : rollNo,
@@ -20,6 +27,37 @@ const UpdatePacements: React.FC = () => {
       }
   
       console.log(Data);
+
+      axios.post(url+"/insert-placements",Data)
+        .then((res)=>{
+          console.log(res);
+
+          setRollNo("");
+          setStudentName("");
+          setCompanyName("")
+          setPackage(0);
+
+          SetFlasher("Data inserted ✅");
+          setTimeout(()=>{
+            SetFlasher("");
+          },1000)
+          setShow(true);
+        })
+        .catch((err)=>{
+          console.log(err);
+          SetFlasher("⚠️ Failed to insert DATA");
+          setTimeout(()=>{
+            SetFlasher("");
+          },1000)
+          setShow(true);
+        })
+      
+    }
+    else{
+        SetFlasher("⚠️  Please fill all the fields");
+        setTimeout(()=>{
+          SetFlasher("");
+        },1400)
     }
   }
 
@@ -117,15 +155,18 @@ const UpdatePacements: React.FC = () => {
             <option value="2023">2023</option>
             <option value="2024">2024</option>
           </select>
-          <button  onClick={()=>{
+          { showSubmit && <button  onClick={()=>{
             handleSave();
           }}  
            className='transition-all active:scale-105 border-black/30 
           border-[1px] select-none px-5 py-2 rounded-xl text-lg hover:cursor-pointer
            active:shadow-lg bg-teal-700 text-white' >
               Save
-          </button>
+          </button>}
         </div>
+      </div>
+      <div className=' h-10 mt-10 '>
+        <p className=' text-orange-700'>{flasher}</p>
       </div>
     </div>
   )
