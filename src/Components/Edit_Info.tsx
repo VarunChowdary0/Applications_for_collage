@@ -15,6 +15,8 @@ const Edit_Info: React.FC = () => {
   const [packageAmount, setPackage] = useState<number>(0);
   const [branch, setBranch] = useState<string>("");
 
+  const [ShowPopUp,setPopUp] = useState<boolean>(false);
+
   const getBranch = (rollNum: string) => {
     const subStr = rollNum.substring(6, 8);
     switch (subStr) {
@@ -79,7 +81,8 @@ const Edit_Info: React.FC = () => {
       if (res.status === 200) {
         setMessage("Update successful!");
         setTimeout(() => {
-        }, 1500); // Wait for 1.5 seconds before redirecting
+          setMessage("");
+        }, 1500); 
       }
     })
     .catch((err) => {
@@ -87,6 +90,35 @@ const Edit_Info: React.FC = () => {
       setMessage("Update failed. Please try again.");
     });
   };
+
+
+  const DeleteRecord = () => {
+    // Optionally disable UI elements here to prevent multiple submissions
+    
+    axios.post(url + "/delete-record", {
+      companyName: company,
+      rollNo: rollNum
+    })
+      .then((res) => {
+        console.log(res.data);
+        
+        setPopUp(false);
+  
+        setTimeout(() => {
+          window.location.href = "/placements";
+        }, 1500);  
+      })
+      .catch((err) => {
+        console.error("Error deleting record:", err);
+  
+        setPopUp(false);
+        setMessage("Failed to Delete Record, Please try again!");
+        setTimeout(() => {
+          setMessage("");
+        }, 2000);
+      });
+  };
+  
 
   return (
     <div className="h-full min-h-screen bg-slate-500/0 flex items-center justify-start flex-col w-full pt-16 px-10">
@@ -156,6 +188,7 @@ const Edit_Info: React.FC = () => {
           </div>
         </div>
         <div onClick={()=>{
+          setPopUp(true);
                 }}  className=' absolute bottom-4 right-4 hover:scale-110 active:scale-90  max-sm:scale-[0.7] 
                 hover:cursor-pointer transition-all  p-2 rounded-full bg-[#d6d4d4]'>
                     <DeleteIcon height={20} width={20}/>
@@ -164,7 +197,15 @@ const Edit_Info: React.FC = () => {
 
       <div className=" text-green-700 w-full h-[50px] bg-black/0 mt-10 text-center">
       {message}</div>
-      <PopUp/>
+      <>
+      {
+        ShowPopUp  && 
+            <PopUp 
+                  callFunction={DeleteRecord} 
+                  setShow={setPopUp} 
+                  message={`Delete ${rollNum}'s record in ${company}`}/>
+      }
+      </>
     </div>
   );
 };

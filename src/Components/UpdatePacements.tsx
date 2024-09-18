@@ -8,8 +8,12 @@ const UpdatePacements: React.FC = () => {
   const [StudentName,setStudentName] = useState<string>("");
   const [CompanyName,setCompanyName] = useState<string>("");
   const [Package,setPackage] = useState<number>();
-  const [Batch, setBatch] = useState<string>("2024");
+  const [Batch, setBatch] = useState<string>("2024")
   const [flasher,SetFlasher] = useState<string>("");
+
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: (currentYear + 4) - 2020 + 1 }, (_, index) => 2020 + index);
+
 
   const [C_suggestions,setCSuggestion] = useState<{CompanyName:string}[]>([]);
 
@@ -196,13 +200,9 @@ const UpdatePacements: React.FC = () => {
               setBatch(e.target.value);
             }}
             value={Batch}>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-            <option value="2024">2024</option>
-            <option value="2025">2025</option>
-            <option value="2026">2026</option>
+             {years.map((year,id)=>
+                        <option value={year}>{year}</option>
+                    )}
           </select>
           { showSubmit && <button  onClick={()=>{
             handleSave();

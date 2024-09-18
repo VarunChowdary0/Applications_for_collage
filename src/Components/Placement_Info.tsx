@@ -50,6 +50,9 @@ const Placement_Info:React.FC = () => {
 
     const [C_suggestions,setCSuggestion] = useState<{CompanyName:string}[]>([]);
 
+    const currentYear = new Date().getFullYear();
+    const years = Array.from({ length: (currentYear + 4) - 2020 + 1 }, (_, index) => 2020 + index);
+
 
 
     const callFetch = () => {
@@ -74,7 +77,7 @@ const Placement_Info:React.FC = () => {
         if(companyName.length !== 0){
             callFetch();
         } 
-    },[,companyName])
+    },[,companyName,Batch])
     useEffect(()=>{
 
         axios.post(url+"/get-companyNames",{
@@ -112,7 +115,7 @@ const Placement_Info:React.FC = () => {
                                 px-3  focus:ring-indigo-600 sm:text-sm sm:leading-6" />
                 
                 { ((C_suggestions.length > 0)) && <div className=' w-full top-16 mt-1 h-fit
-                 absolute  bg-[#ffffff] rounded-md shadow-md  border-[#efede9]'>
+                 absolute  bg-[#ffffff] rounded-md shadow-md  border-[#efede9] z-40'>
                     {
                         C_suggestions.map((ele,idx)=>
                         ( ele.CompanyName!==companyName &&
@@ -139,15 +142,10 @@ const Placement_Info:React.FC = () => {
                                 onChange={(e)=>{
                                     setBatch(e.target.value);
                                 }}
-                                value={Batch} > 
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
+                                value={Batch} >
+                    {years.map((year,id)=>
+                        <option value={year}>{year}</option>
+                    )} 
                 </select>
             </div>
             { (!isSubimmted && companyName.trim().length>0 ) && 
@@ -173,12 +171,13 @@ const Placement_Info:React.FC = () => {
         </div>
        
 
-        <div className='w-full h-fit bg-slate-600/0  flex justify-center mb-12 px-4'>
-            <div className='w-full overflow-x-auto flex items-center justify-center'>
-                <Table headings={["SNO", "Roll number", "Name", "Company", "Package"]} rows={data} />
+        {data.length>0 &&
+            <div className='w-full h-fit bg-slate-600/0  flex justify-center mb-12 px-4'>
+                <div className='w-full overflow-x-auto flex items-center justify-center'>
+                    <Table headings={["SNO", "Roll number", "Name", "Company", "Package"]} rows={data} />
+                </div>
             </div>
-        </div>
-
+        }
     </div>
   )
 }
