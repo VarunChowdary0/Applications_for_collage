@@ -119,7 +119,7 @@ const Placement_Info:React.FC = () => {
                             <div onClick={()=>{
                                 setCompanyName(ele.CompanyName);
                             }}>
-                                <div className=' flex items-center justify-start transition-all hover:bg-[#eeede9] px-6 py-2'>{ele.CompanyName}</div>
+                                <div className=' hover:cursor-pointer flex items-center justify-start transition-all hover:bg-[#eeede9] px-6 py-2'>{ele.CompanyName}</div>
                                 {companyName.length-1 === idx &&
                                 <hr className=' border-[#d4cbcb]'/>
                             }
