@@ -113,12 +113,9 @@ const Edit_Info: React.FC = () => {
       .then((res) => {
         console.log(res.data);
         
-        setPopUp(false);
-  
-        setTimeout(() => {
-          window.location.href = "/placements";
-        }, 1500);  
-      })
+        setPopUp(false);  
+        window.location.href = "/placements";
+        })
       .catch((err) => {
         console.error("Error deleting record:", err);
   
