@@ -4,6 +4,7 @@ import EditIcon from "./Icons/EditIcon";
 import axios from "axios";
 import url from "./URL/Constants";
 import DeleteIcon from "./Icons/DeleteIcon";
+import PopUp from "./PopUp";
 
 const Edit_Info: React.FC = () => {
   const { rollNum } = useParams<{ rollNum: string }>();
@@ -90,7 +91,7 @@ const Edit_Info: React.FC = () => {
   return (
     <div className="h-full min-h-screen bg-slate-500/0 flex items-center justify-start flex-col w-full pt-16 px-10">
       <div className="h-fit w-fit shadow-xl overflow-hidden bg-white dark:text-white max-sm:w-[80vw] rounded-md relative">
-        <div className="absolute h-[150px] w-[150px] top-[20%] max-sm:top-[100px] bg-[#4c4b4b] max-sm:scale-75 left-1 max-sm:left-[-10px] rounded-full overflow-hidden z-40">
+        <div className="absolute h-[150px] w-[150px] top-[20%] max-sm:top-[100px] bg-[#4c4b4b] max-sm:scale-75 left-1 max-sm:left-[-10px] rounded-full overflow-hidden z-30">
           <img
             className="select-none"
             src={`https://iare-data.s3.ap-south-1.amazonaws.com/uploads/STUDENTS/${rollNum}/${rollNum}.jpg`}
@@ -163,6 +164,7 @@ const Edit_Info: React.FC = () => {
 
       <div className=" text-green-700 w-full h-[50px] bg-black/0 mt-10 text-center">
       {message}</div>
+      <PopUp/>
     </div>
   );
 };
