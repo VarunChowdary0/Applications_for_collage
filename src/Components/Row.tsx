@@ -1,6 +1,5 @@
 import React from 'react'
 import EditIcon from './Icons/EditIcon'
-import DeleteIcon from './Icons/DeleteIcon'
 
 interface currentProps{
     sno : number,
@@ -34,12 +33,6 @@ const Row:React.FC<currentProps> = (props) => {
                 }}  className=' hover: scale-110 active:scale-90  max-sm:scale-[0.7] 
                 hover:cursor-pointer transition-all  p-2 rounded-full bg-[#9c9c9c]'>
                     <EditIcon height={20} width={20}/>
-                </div>
-                <div onClick={()=>{
-                    window.location.href=`/EditInfo/${props.companyName}/${props.rollNo}`;
-                }}  className=' hover: scale-110 active:scale-90  max-sm:scale-[0.7] 
-                hover:cursor-pointer transition-all  p-2 rounded-full bg-[#9c9c9c]'>
-                    <DeleteIcon height={20} width={20}/>
                 </div>
             </div>
         </td>

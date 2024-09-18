@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import EditIcon from "./Icons/EditIcon";
 import axios from "axios";
 import url from "./URL/Constants";
+import DeleteIcon from "./Icons/DeleteIcon";
 
 const Edit_Info: React.FC = () => {
   const { rollNum } = useParams<{ rollNum: string }>();
@@ -153,6 +154,11 @@ const Edit_Info: React.FC = () => {
             Update
           </div>
         </div>
+        <div onClick={()=>{
+                }}  className=' absolute bottom-4 right-4 hover:scale-110 active:scale-90  max-sm:scale-[0.7] 
+                hover:cursor-pointer transition-all  p-2 rounded-full bg-[#d6d4d4]'>
+                    <DeleteIcon height={20} width={20}/>
+                </div>
       </div>
 
       <div className=" text-green-700 w-full h-[50px] bg-black/0 mt-10 text-center">
