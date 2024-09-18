@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import XmarkIcon from './Icons/XmarkIcon'
 
 interface currentPops{
     setShow : React.Dispatch<React.SetStateAction<boolean>>;
     message:string;
     callFunction : () => void;
+    load:boolean
 }
 
 const PopUp:React.FC<currentPops> = (props) => {
+
+
 
   return (
     <div className=' z-40 fixed top-0 bottom-0 left-0 right-0 bg-[#674141]/30
@@ -27,12 +30,18 @@ const PopUp:React.FC<currentPops> = (props) => {
                     {props.message}
                 </div>    
             </div> 
-            <div onClick={props.callFunction} className=' items-center left-0 right-0 justify-center flex h-10 absolute bottom-3'>
-                <div className=' text-emerald-50 rounded-md hover:cursor-pointer px-4 py-2 
-                active:scale-75 select-none bg-red-700 transition-all'>
-                    Delete
+            {props.load?
+                <div className=' w-full flex justify-center items-center'>
+                    <span className='loader scale-75'></span>    
+                </div> 
+                :
+                <div onClick={props.callFunction} className=' items-center left-0 right-0 justify-center flex h-10 absolute bottom-3'>
+                    <div className=' text-emerald-50 rounded-md hover:cursor-pointer px-4 py-2 
+                    active:scale-75 select-none bg-red-700 transition-all'>
+                        Delete
+                    </div>
                 </div>
-            </div>
+        }
         </div>
     </div>
   )

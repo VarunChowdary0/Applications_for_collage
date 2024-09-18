@@ -19,6 +19,9 @@ const Edit_Info: React.FC = () => {
 
   const [load,setLoad] = useState<boolean>(true);
 
+  const [load2,setLoad2] = useState<boolean>(false);
+
+
   const getBranch = (rollNum: string) => {
     const subStr = rollNum.substring(6, 8);
     switch (subStr) {
@@ -106,19 +109,22 @@ const Edit_Info: React.FC = () => {
 
 
   const DeleteRecord = () => {
+    setLoad2(true);
     axios.post(url + "/delete-record", {
       companyName: company,
       rollNo: rollNum
     })
       .then((res) => {
         console.log(res.data);
-        
+        setLoad2(false);
         setPopUp(false);  
+        // setTimeout(()=>{
+        // },2000)
         window.location.href = "/placements";
         })
       .catch((err) => {
         console.error("Error deleting record:", err);
-  
+        setLoad2(false);
         setPopUp(false);
         setMessage("Failed to Delete Record, Please try again!");
         setTimeout(() => {
@@ -216,6 +222,7 @@ const Edit_Info: React.FC = () => {
             <PopUp 
                   callFunction={DeleteRecord} 
                   setShow={setPopUp} 
+                  load={load2}
                   message={`Delete ${rollNum}'s Placement record in ${company}`}/>
       }
       </>
