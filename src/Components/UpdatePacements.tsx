@@ -17,6 +17,7 @@ const UpdatePacements: React.FC = () => {
 
   const [C_suggestions,setCSuggestion] = useState<{CompanyName:string}[]>([]);
 
+  const [load,setLoad] = useState<boolean>(false);
 
   const [showSubmit,setShow] = useState<boolean>(true);
 
@@ -35,8 +36,9 @@ const UpdatePacements: React.FC = () => {
   
       console.log(Data);
 
+      setLoad(true);
       axios.post(url+"/insert-placements",Data)
-        .then((res)=>{
+      .then((res)=>{
           console.log(res);
 
           setRollNo("");
@@ -48,9 +50,11 @@ const UpdatePacements: React.FC = () => {
           setTimeout(()=>{
             SetFlasher("");
           },1000)
+          setLoad(false)
           setShow(true);
         })
         .catch((err)=>{
+          setLoad(false )
           console.log(err);
           SetFlasher("⚠️ Failed to insert DATA");
           setTimeout(()=>{
@@ -212,6 +216,9 @@ const UpdatePacements: React.FC = () => {
            active:shadow-lg bg-teal-700 text-white' >
               Save
           </button>}
+          {load && <div>
+            <span className='loader'></span>
+          </div>}
         </div>
       </div>
       <div className=' h-10 mt-10 '>

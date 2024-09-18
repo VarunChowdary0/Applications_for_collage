@@ -17,6 +17,8 @@ const Edit_Info: React.FC = () => {
 
   const [ShowPopUp,setPopUp] = useState<boolean>(false);
 
+  const [load,setLoad] = useState<boolean>(true);
+
   const getBranch = (rollNum: string) => {
     const subStr = rollNum.substring(6, 8);
     switch (subStr) {
@@ -60,10 +62,21 @@ const Edit_Info: React.FC = () => {
         if (response.length > 0) {
           setName(response[0].name);
           setPackage(response[0].package);
-        }    
+          setLoad(false);
+        }
+        else{
+          setMessage("⚠️ Record Not found please verify.");
+          setTimeout(()=>{
+            window.location.href="/placements"
+          },1000)
+        } 
       })
       .catch((err) => {
         console.log(err);
+        setMessage("⚠️ Something went Wrong trying again.");
+        setTimeout(()=>{
+          window.location.reload();
+        },1000)
       });
     }
   }, [rollNum, company]);
@@ -93,8 +106,6 @@ const Edit_Info: React.FC = () => {
 
 
   const DeleteRecord = () => {
-    // Optionally disable UI elements here to prevent multiple submissions
-    
     axios.post(url + "/delete-record", {
       companyName: company,
       rollNo: rollNum
@@ -122,7 +133,12 @@ const Edit_Info: React.FC = () => {
 
   return (
     <div className="h-full min-h-screen bg-slate-500/0 flex items-center justify-start flex-col w-full pt-16 px-10">
-      <div className="h-fit w-fit shadow-xl overflow-hidden bg-white dark:text-white max-sm:w-[80vw] rounded-md relative">
+      
+     {load?
+        <div className=' w-full h-20 bg-black/0 flex items-center justify-center mt-[200px]'>
+            <span className='loader'></span>
+        </div>
+     : <div className="h-fit w-fit shadow-xl overflow-hidden bg-white dark:text-white max-sm:w-[80vw] rounded-md relative">
         <div className="absolute h-[150px] w-[150px] top-[20%] max-sm:top-[100px] bg-[#4c4b4b] max-sm:scale-75 left-1 max-sm:left-[-10px] rounded-full overflow-hidden z-30">
           <img
             className="select-none"
@@ -193,7 +209,7 @@ const Edit_Info: React.FC = () => {
                 hover:cursor-pointer transition-all  p-2 rounded-full bg-[#d6d4d4]'>
                     <DeleteIcon height={20} width={20}/>
                 </div>
-      </div>
+      </div>}
 
       <div className=" text-green-700 w-full h-[50px] bg-black/0 mt-10 text-center">
       {message}</div>
@@ -203,7 +219,7 @@ const Edit_Info: React.FC = () => {
             <PopUp 
                   callFunction={DeleteRecord} 
                   setShow={setPopUp} 
-                  message={`Delete ${rollNum}'s record in ${company}`}/>
+                  message={`Delete ${rollNum}'s Placement record in ${company}`}/>
       }
       </>
     </div>

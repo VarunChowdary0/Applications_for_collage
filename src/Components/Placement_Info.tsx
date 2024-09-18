@@ -53,18 +53,21 @@ const Placement_Info:React.FC = () => {
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: (currentYear + 4) - 2020 + 1 }, (_, index) => 2020 + index);
 
-
+    const [load,setLoad] = useState<boolean>(false);
 
     const callFetch = () => {
+        setData([]);
+        setLoad(true);
         axios.post(url + "/get-placement-info", {
             companyName,
             Batch
         })
         .then((res) => {
             const placements: PlacementData[] = res.data.data;
-            console.log(placements);    
+            console.log(placements);
+            setLoad(false);
             setData(placements);
-
+            setFetchStat(true);
         })
         .catch((err) => {
             console.log(err);
@@ -162,7 +165,10 @@ const Placement_Info:React.FC = () => {
                 text-center bg-slate-600/0 font-thin tracking-wider '>
                     {
                         isFetched?
-                        <p>Showing Results on Placements at {companyName} for batch {Batch} </p> 
+                        <p>
+                            {data.length>0?
+                            `No Data Found.`:`Showing Results on Placements at ${companyName} for batch ${Batch}`}
+                        </p> 
                         :
                         <p>Looking for Results on Placements at {companyName} for batch {Batch} ...</p>
                     }
@@ -170,6 +176,11 @@ const Placement_Info:React.FC = () => {
             }
         </div>
        
+       {load &&
+        <div className=' w-full h-20 bg-black/0 flex items-center justify-center mt-[100px]'>
+            <span className='loader'></span>
+        </div>
+       }
 
         {data.length>0 &&
             <div className='w-full h-fit bg-slate-600/0  flex justify-center mb-12 px-4'>
