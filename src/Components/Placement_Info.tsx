@@ -157,7 +157,7 @@ const Placement_Info:React.FC = () => {
                 setSubmmit(true);
             }} className=' select-none px-5 py-2 hover:cursor-pointer bg-[#4c5cb6] 
             text-white rounded-xl active:bg-[#81ae2f] absolute bottom-5 right-8 active:shadow-lg
-             transition-all active:scale-105 border-black/30 border-[1px]'>Submit</div>}
+             transition-all active:scale-105 border-black/30 border-[1px] max-sm:bottom-3 max-sm:right-2'>Submit</div>}
         </div>
         <div className=' h-[50px] w-full'>
             { ( isSubimmted && companyName.trim().length>0 ) &&

@@ -9,11 +9,19 @@ import Placement_Info from './Components/Placement_Info';
 import UpdatePacements from './Components/UpdatePacements';
 import Edit_Info from './Components/Edit_Info';
 import Edit_Info_Raw from './Components/Edit_Info_Raw';
+import StudentLocation from './Components/StudentLocation';
 
 const router = createBrowserRouter([
   {
     path:"/",
     element:<><Menu currentPage='home'/></>
+  },{
+    path:"/studentClasses",
+    element:
+    <>
+      <Menu currentPage='class_info'/>
+      <StudentLocation/>
+    </>
   },
   {
     path:"/placements",

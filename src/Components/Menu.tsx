@@ -13,7 +13,7 @@ const Menu:React.FC<currentProps> = (prps) => {
         !isActive &&
         <div onClick={()=>{
           Activate(true);
-        }} className=' bg-[#212645] px-4 py-2 text-white w-fit absolute top-3 left-5 
+        }} className=' bg-[#212645] px-4 py-2 text-white w-fit fixed top-3 left-5 
         rounded-xl hover:cursor-pointer max-sm:left-1 max-sm:scale-75'>Menu</div>
        }
 
@@ -36,7 +36,7 @@ const Menu:React.FC<currentProps> = (prps) => {
               </div>
               <div className={` px-10 py-5 flex items-center justify-center 
               transition-all duration-300 ${prps.currentPage==="class_info"?" text-white":" text-[#8b8989]"} hover:cursor-pointer rounded-3xl`}>
-                  <a href="/placements">Student class data</a>
+                  <a href="/studentClasses">Student class data</a>
               </div>
               
               <div className={` px-10 py-5 flex items-center justify-center 
