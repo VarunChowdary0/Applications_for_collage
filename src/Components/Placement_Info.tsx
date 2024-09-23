@@ -74,6 +74,25 @@ const Placement_Info:React.FC = () => {
             setSubmmit(false);
         });
     };
+    const Sorted_callFetch = () => {
+        setData([]);
+        setLoad(true);
+        axios.post(url + "/get-placement-info-ordered", {
+            companyName,
+            Batch
+        })
+        .then((res) => {
+            const placements: PlacementData[] = res.data.data;
+            console.log(placements);
+            setLoad(false);
+            setData(placements);
+            setFetchStat(true);
+        })
+        .catch((err) => {
+            console.log(err);
+            setSubmmit(false);
+        });
+    };
 
     
     useEffect(()=>{
