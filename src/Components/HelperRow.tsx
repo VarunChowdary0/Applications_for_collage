@@ -12,7 +12,7 @@ interface currentProps {
 
 const HelperRow: React.FC<currentProps> = (ele) => {
     const [values, setValues] = useState<string[]>(ele.arry);
-    
+    const [load,setLoad] = useState<boolean>(false);
     const [isChanged, setChanged] = useState<boolean>(false);
 
     const handleInputChange = (idx: number, part: number, newValue: string) => {
@@ -83,10 +83,11 @@ const HelperRow: React.FC<currentProps> = (ele) => {
                             };
 
                             console.log(data);
-
+                            setLoad(true);
                             axios.post(url+"/update-time-table",data)
                                 .then((res)=>{
                                     console.log(data);
+                                    setLoad(false);
                                     // window.location.reload();
                                     setChanged(false);
                                 })
@@ -96,7 +97,7 @@ const HelperRow: React.FC<currentProps> = (ele) => {
                         }}
                     className=' hover:cursor-pointer absolute px-1 pb-2 top-2
                      right-2 bg-green-300 rounded-xl'>
-                        &#10004;
+                        {load?<div className='loader pt-1 '></div>:<div>&#10004;</div>}
                     </div> }
                 </>
         </>
