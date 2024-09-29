@@ -8,6 +8,18 @@ interface currentProps {
 const Menu: React.FC<currentProps> = (prps) => {
   const [isActive, Activate] = useState<boolean>(false);
   
+  const xpop: {
+    department: string;
+    section: string;
+    semester: number;
+  } = localStorage.getItem("__class_def__") 
+      ? JSON.parse(localStorage.getItem("__class_def__")!) 
+      : {
+          department: "Computer Science and Engineering",
+          semester: 5,
+          section: 'A'
+      };
+  
   return (
     <>
       {!isActive && (
@@ -69,6 +81,14 @@ const Menu: React.FC<currentProps> = (prps) => {
               } hover:cursor-pointer rounded-3xl`}
           >
             <Link to="/EditInfo">Edit Student Placement</Link>
+          </div>
+          <div
+            className={`px-10 py-5 flex items-center justify-center 
+              transition-all duration-300 ${
+                prps.currentPage === 'EDT_CTT' ? 'text-white' : 'text-[#8b8989]'
+              } hover:cursor-pointer rounded-3xl`}
+          >
+            <Link to={`/EditTimeTable/${xpop.department}/${xpop.semester}/${xpop.section}`}>Edit Class Time Table</Link>
           </div>
         </div>
 

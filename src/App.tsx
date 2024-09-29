@@ -10,6 +10,7 @@ import UpdatePacements from './Components/UpdatePacements';
 import Edit_Info from './Components/Edit_Info';
 import Edit_Info_Raw from './Components/Edit_Info_Raw';
 import StudentLocation from './Components/StudentLocation';
+import EditClassTimetable from './Components/EditClassTimetable';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,12 @@ const router = createBrowserRouter([
     <>
       <Menu currentPage='EDT_IFO' />
       <Edit_Info_Raw/>
+    </>
+  },{
+    path:"/EditTimeTable/:department/:semester/:section",
+    element:<>
+      <Menu currentPage='EDT_CTT'/>
+      <EditClassTimetable/>
     </>
   }
 ]);

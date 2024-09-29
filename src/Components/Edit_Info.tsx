@@ -138,7 +138,6 @@ const Edit_Info: React.FC = () => {
 
   return (
     <div className="h-full min-h-screen bg-slate-500/0 flex items-center justify-start flex-col w-full pt-16 px-10">
-      
      {load?
         <div className=' w-full h-20 bg-black/0 flex items-center justify-center mt-[200px]'>
             <span className='loader'></span>
